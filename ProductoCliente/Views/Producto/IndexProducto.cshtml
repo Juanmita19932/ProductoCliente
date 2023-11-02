@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Producto>
+
+@using ProductoCliente.Model;
+
+<br />
+<a href="@Url.Action("Create")" class="btn btn-primary">Crear Producto</a>
+<br />
+<br />
+<table class="table table-bordered table-hover">
+    <thead class="table-primary">
+        <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Producto producto in Model)
+        {
+            <tr>
+                <td>@producto.Nombre</td>
+                <td>@producto.Precio</td>
+                <td>
+                    <a href="@Url.Action("Edit", new { id = producto.Id })" class="btn btn-secondary btn-sm">Editar</a>
+                    <form action="@Url.Action("Delete", new { id = producto.Id })" method="post" style="display: inline;">
+                        <button type="submit" class="btn btn-danger btn-sm" style="background-color: blue;">Borrar</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
